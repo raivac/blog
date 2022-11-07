@@ -58,7 +58,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return "Edición del post";
+        return "Ficha del post: $id";
     }
 
     /**

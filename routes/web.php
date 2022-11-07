@@ -14,20 +14,27 @@ use App\Http\Controllers\PostController;
 */
 
 
-Route::resource('posts',PostController::class)->only(['index','show','create','edit']);
-
 Route::get('/', function () {
     return view('blog');
 })->name('blog');
 
+
+
+Route::resource('posts',PostController::class)->only(['index','show','create','edit']);
+
+
+
 Route::get('posts',[PostController::class,'index'])->name('index');
 
-Route::get('posts/{id?}',[PostController::class,'show']) ->where('id', "[0-9]+")->name('show');
+Route::get('posts{id?}',[PostController::class,'show']) ->where('id', "[0-9]+")->name('show');
 
 
-/*
+Route::get('posts/crear',[PostController::class,'create'])->name('crear');
+
+Route::get('posts/ediar{id?}',[PostController::class,'edit'])->name('editar');
+
+
 Route::get('/inicio', function () {
     return view('inicio');
 })->name('inicio');
 
-*/
