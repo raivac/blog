@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return "Nuevo Post";
+        return redirect()->route('inicio');
     }
 
     /**
@@ -46,7 +46,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts/show');
+        return view('posts/show')->with('id', $id);
 
     }
 
@@ -56,9 +56,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        return "Ficha del post: $id";
+        return redirect()->route('inicio');
     }
 
     /**

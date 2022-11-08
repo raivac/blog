@@ -6,13 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="{{route('inicio')}}">Inicio</a>
-          </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{route('index')}}">Listado posts</a>
+          <a class="nav-link" href="{{route('index')}}">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('show')}}">Ver post con id?</a>
+          <a class="nav-link" href="{{route('show')}}">Ver post</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route('crear')}}">Nuevo post</a>

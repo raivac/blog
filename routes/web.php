@@ -18,23 +18,24 @@ Route::get('/', function () {
     return view('blog');
 })->name('blog');
 
+Route::get('inicio', function () {
+    return view('inicio');
+})->name('inicio');
+
 
 
 Route::resource('posts',PostController::class)->only(['index','show','create','edit']);
 
 
 
-Route::get('posts',[PostController::class,'index'])->name('index');
+Route::get('index',[PostController::class,'index'])->name('index');
 
-Route::get('posts{id?}',[PostController::class,'show']) ->where('id', "[0-9]+")->name('show');
+Route::get('post/{id?}',[PostController::class,'show']) ->where('id', "[0-9]+")->name('show');
+
+Route::get('crear',[PostController::class,'create'])->name('crear');
+
+Route::get('ediar',[PostController::class,'edit'])->name('editar');
 
 
-Route::get('posts/crear',[PostController::class,'create'])->name('crear');
 
-Route::get('posts/ediar{id?}',[PostController::class,'edit'])->name('editar');
-
-
-Route::get('/inicio', function () {
-    return view('inicio');
-})->name('inicio');
 

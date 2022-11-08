@@ -15,8 +15,9 @@
 
 <body>
     @include('partials.nav')
+    <br>
+    <h4 style="text-align:right">Fecha actual: <?php  fechaActual() ?></h4>
+    <hr>
     @yield('contenido')
-
-
 </body>
 </html>
