@@ -6,17 +6,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="{{route('index')}}">Inicio</a>
+          <a class="nav-link" href="{{route('posts.index')}}">Listado de posts</a>
         </li>
+        {{-- <li class="nav-item">
+          <a class="nav-link" href="{{route('posts.show')}}">Ver post</a>
+        </li> --}}
         <li class="nav-item">
-          <a class="nav-link" href="{{route('show')}}">Ver post</a>
+            <a class="nav-link" href="{{route('posts.create')}}">Nuevo post</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('crear')}}">Nuevo post</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('editar')}}">Editar post</a>
-        </li>
+        {{-- <li class="nav-item">
+            <a class="nav-link" href="{{route('posts.edit')}}">Editar post</a>
+        </li> --}}
       </ul>
     </div>
   </nav>
+
+  {{-- LO QUE ESTA COMENTADO ES PORQUE DABA ERROR AL NO RECIBIR EL PARAMETRO ID --}}

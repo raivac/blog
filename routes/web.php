@@ -28,13 +28,13 @@ Route::resource('posts',PostController::class)->only(['index','show','create','e
 
 
 
-Route::get('index',[PostController::class,'index'])->name('index');
+// Route::get('index',[PostController::class,'index'])->name('index');
 
-Route::get('post/{id?}',[PostController::class,'show']) ->where('id', "[0-9]+")->name('show');
+// Route::get('post/{id?}',[PostController::class,'show']) ->where('id', "[0-9]+");
 
-Route::get('crear',[PostController::class,'create'])->name('crear');
+// Route::get('crear',[PostController::class,'create'])->name('crear');
 
-Route::get('ediar',[PostController::class,'edit'])->name('editar');
+// Route::get('ediar',[PostController::class,'edit'])->name('editar');
 
 
 
