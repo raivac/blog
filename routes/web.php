@@ -24,7 +24,7 @@ Route::get('inicio', function () {
 
 
 
-Route::resource('posts',PostController::class)->only(['index','show','create','edit']);
+Route::resource('posts',PostController::class)->only(['index','show','create','edit','destroy']);
 
 
 

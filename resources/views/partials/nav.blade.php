@@ -8,9 +8,6 @@
         <li class="nav-item active">
           <a class="nav-link" href="{{route('posts.index')}}">Listado de posts</a>
         </li>
-        {{-- <li class="nav-item">
-          <a class="nav-link" href="{{route('posts.show')}}">Ver post</a>
-        </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="{{route('posts.create')}}">Nuevo post</a>
         </li>

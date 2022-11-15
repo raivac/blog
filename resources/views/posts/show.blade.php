@@ -3,5 +3,7 @@
 @section('titulo', 'Ficha post')
 
 @section('contenido')
-    <h1>Ficha del post: {{ $id }}</h1>
+    <h2>Titulo: {{ $post->titulo }} </h2>
+    <h2>Contenido: {{ $post->contenido }}</h2>
+    <h2>Creado:{{ $post->created_at}} </h2>
 @endsection

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,8 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-
-        return view('posts/index');
+        $posts = Post::orderBy('titulo')->paginate(5);
+        return view('posts.index',compact('posts'));
 
     }
 
@@ -46,8 +48,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts/show')->with('id', $id);
-
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -81,6 +83,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::findOrFail($id)->delete();
+        $posts = Post::orderBy('titulo')->paginate(5);
+        return view('posts.index', compact('posts'));
     }
 }
