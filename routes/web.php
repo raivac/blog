@@ -24,7 +24,11 @@ Route::get('inicio', function () {
 
 
 
-Route::resource('posts',PostController::class)->only(['index','show','create','edit','destroy']);
+Route::resource('posts',PostController::class);
+// Route::get('posts/nuevaPrueba',[PostController::class,'nuevaPrueba'])->name('nuevaPrueba');
+// Route::get('posts/editarPrueba',[PostController::class,'editarPrueba'])->name('editarPrueba');
+
+
 
 
 

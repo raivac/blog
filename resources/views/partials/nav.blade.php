@@ -11,11 +11,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('posts.create')}}">Nuevo post</a>
         </li>
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{route('posts.edit')}}">Editar post</a>
-        </li> --}}
       </ul>
     </div>
   </nav>
 
-  {{-- LO QUE ESTA COMENTADO ES PORQUE DABA ERROR AL NO RECIBIR EL PARAMETRO ID --}}

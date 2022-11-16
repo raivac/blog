@@ -26,7 +26,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        return redirect()->route('inicio');
+        $post = new Post();
+        $post->titulo = "Titulo: ". rand();
+        $post->contenido = "Contenido: ". rand();
+        $post->save();
+        $posts = Post::orderBy('titulo')->paginate(5);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -60,7 +65,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return redirect()->route('inicio');
+        $post = Post::findOrFail($id);
+        $post->titulo = "Titulo: ". rand();
+        $post->contenido = "Contenido: ". rand();
+        $post->save();
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -87,4 +96,26 @@ class PostController extends Controller
         $posts = Post::orderBy('titulo')->paginate(5);
         return view('posts.index', compact('posts'));
     }
+
+    //No he conseguido hacer el insertar y el editar de prueba con estos metodos,
+    //Los he puesto en el create y edit.
+
+    // public function nuevaPrueba(){
+    //     $post = new Post();
+    //     $post->titulo = "Titulo: ". rand();
+    //     $post->contenido = "Contenido: ". rand();
+    //     $post->save();
+    //     $posts = Post::orderBy('titulo')->paginate(5);
+    //     return view('posts.index', compact('posts'));
+    // }
+
+
+    // public function editarPrueba($id){
+    //     $post = Post::findOrFail($id);
+    //     $post->titulo = "Titulo: ". rand();
+    //     $post->contenido = "Contenido: ". rand();
+    //     $post->save();
+    //     $posts = Post::orderBy('titulo')->paginate(5);
+    //     return view('posts.index', compact('posts'));
+    // }
 }

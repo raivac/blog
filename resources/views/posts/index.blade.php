@@ -11,14 +11,13 @@
         <tr>
             <td><h2>{{ $post->titulo }}</h2></td>
 
-            <td> <button style="float: right" type="button" class="btn btn-primary" onclick="{{route('posts.show',$post)}}">Ver</button></td>
-
+            <td><a class="btn btn-primary" href="{{ route('posts.show', $post) }}">Ver</a></td>
             <td>
                 <form action="{{ route('posts.destroy', $post) }}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <button style="float: right" type="button" class="btn btn-primary">Borrar</button>
-                </form>
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-primary">Borrar</button>
+                    </form>
             </td>
         </tr>
 
