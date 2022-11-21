@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('titulo')->paginate(5);
+        $posts = Post::with('user')->paginate(5);
         return view('posts.index',compact('posts'));
 
     }
@@ -26,9 +27,11 @@ class PostController extends Controller
      */
     public function create()
     {
+        $user = User::findOrFail(1);
         $post = new Post();
         $post->titulo = "Titulo: ". rand();
         $post->contenido = "Contenido: ". rand();
+        $post->user()->associate($user);
         $post->save();
         $posts = Post::orderBy('titulo')->paginate(5);
         return view('posts.index', compact('posts'));

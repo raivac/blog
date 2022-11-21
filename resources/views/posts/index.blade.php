@@ -10,7 +10,7 @@
         @forelse($posts as $post)
         <tr>
             <td><h2>{{ $post->titulo }}</h2></td>
-
+            <td><h2>({{ $post->user->login}})</h2></td>
             <td><a class="btn btn-primary" href="{{ route('posts.show', $post) }}">Ver</a></td>
             <td>
                 <form action="{{ route('posts.destroy', $post) }}" method="POST">
