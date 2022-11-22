@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -27,14 +28,15 @@ class PostController extends Controller
      */
     public function create()
     {
-        $user = User::findOrFail(1);
-        $post = new Post();
-        $post->titulo = "Titulo: ". rand();
-        $post->contenido = "Contenido: ". rand();
-        $post->user()->associate($user);
-        $post->save();
-        $posts = Post::orderBy('titulo')->paginate(5);
-        return view('posts.index', compact('posts'));
+        // $user = User::findOrFail(1);
+        // $post = new Post();
+        // $post->titulo = "Titulo: ". rand();
+        // $post->contenido = "Contenido: ". rand();
+        // $post->user()->associate($user);
+        // $post->save();
+        // $posts = Post::orderBy('titulo')->paginate(5);
+        // return view('posts.index', compact('posts'));
+        return view('posts.create');
     }
 
     /**
@@ -43,9 +45,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $post = new Post();
+        $post->id = rand();
+        $post->titulo = $request->get('titulo');
+        $post->user_id = $request->get('user');
+        $post->contenido = $request->get('contenido');
+        $post->save();
+
+        return redirect()->route('posts.index');
     }
 
     /**

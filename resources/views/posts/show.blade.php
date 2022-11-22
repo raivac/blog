@@ -8,7 +8,15 @@
     <h2>Creado:{{ $post->created_at}} </h2>
     <table>
         <tr>
-            <td><a class="btn btn-primary" href="{{ route('posts.edit', $post) }}">Editar</a></td>
+            <td><a class="btn btn-primary" href="{{ route('posts.show', $post) }}">Editar</a></td>
+
+            <td>
+                <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger">Borrar</button>
+                    </form>
+            </td>
         </tr>
     </table>
 @endsection
