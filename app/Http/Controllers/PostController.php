@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,6 +9,15 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth',
+        ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -28,14 +37,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        // $user = User::findOrFail(1);
-        // $post = new Post();
-        // $post->titulo = "Titulo: ". rand();
-        // $post->contenido = "Contenido: ". rand();
-        // $post->user()->associate($user);
-        // $post->save();
-        // $posts = Post::orderBy('titulo')->paginate(5);
-        // return view('posts.index', compact('posts'));
         return view('posts.create');
     }
 
@@ -78,10 +79,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        $post->titulo = "Titulo: ". rand();
-        $post->contenido = "Contenido: ". rand();
-        $post->save();
-        return view('posts.show', compact('post'));
+        if (Auth::user()->id != $post->user->id)
+
+            return redirect()->route('posts.index');
+        else
+            return view('posts.edit', compact('post'));
     }
 
     /**
@@ -94,6 +96,17 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $post = Post::findOrFail($id);
+        if (Auth::user()->id != $post->user->id)
+            return redirect()->route('posts.index');
+        else
+        {
+            $post->titulo = $request->get('titulo');
+            $post->contenido = $request->get('contenido');
+            $post->save();
+
+            return redirect()->route('posts.show', $id);
+        }
     }
 
     /**
@@ -104,30 +117,17 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::findOrFail($id)->delete();
-        $posts = Post::orderBy('titulo')->paginate(5);
-        return view('posts.index', compact('posts'));
+        $post = Post::findOrFail($id);
+        if (Auth::user()->id != $post->user->id)
+        {
+            return redirect()->route('posts.index');
+
+        }
+        else{
+            $post->delete();
+            return redirect()->route('posts.index');
+        }
     }
 
-    //No he conseguido hacer el insertar y el editar de prueba con estos metodos,
-    //Los he puesto en el create y edit.
 
-    // public function nuevaPrueba(){
-    //     $post = new Post();
-    //     $post->titulo = "Titulo: ". rand();
-    //     $post->contenido = "Contenido: ". rand();
-    //     $post->save();
-    //     $posts = Post::orderBy('titulo')->paginate(5);
-    //     return view('posts.index', compact('posts'));
-    // }
-
-
-    // public function editarPrueba($id){
-    //     $post = Post::findOrFail($id);
-    //     $post->titulo = "Titulo: ". rand();
-    //     $post->contenido = "Contenido: ". rand();
-    //     $post->save();
-    //     $posts = Post::orderBy('titulo')->paginate(5);
-    //     return view('posts.index', compact('posts'));
-    // }
 }

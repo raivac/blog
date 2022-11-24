@@ -11,7 +11,9 @@
         <tr>
             <td><h2>{{ $post->titulo }}</h2></td>
             <td><h2>({{ $post->user->login}})</h2></td>
+            @if(auth()->check())
             <td><a class="btn btn-primary" href="{{ route('posts.show', $post) }}">Ver</a></td>
+            <td><a class="btn btn-warning" href="{{ route('posts.edit', $post) }}">Editar</a></td>
             <td>
                 <form action="{{ route('posts.destroy', $post) }}" method="POST">
                         @method('DELETE')
@@ -19,6 +21,7 @@
                         <button class="btn btn-danger">Borrar</button>
                     </form>
             </td>
+            @endif
         </tr>
 
         <tr>

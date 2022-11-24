@@ -16,8 +16,14 @@
 <body>
     @include('partials.nav')
     <br>
-    <h4 style="text-align:right">Fecha actual: <?php  fechaActual() ?></h4>
+    <div style="display: table ; width:100% ; padding:5px 10px" >
+        @if (auth()->check())
+        <h4 style="display: table-cell"> Usuario conectado: <b>{{ auth()->user()->login }}</b><h4>
+        @endif
+        <h4 style="display: table-cell ; text-align:right">Fecha actual: <?php  fechaActual() ?></h4>
+    </div>
     <hr>
     @yield('contenido')
+
 </body>
 </html>

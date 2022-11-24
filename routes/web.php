@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +25,12 @@ Route::get('inicio', function () {
 })->name('inicio');
 
 
+Route::get('login', [LoginController::class, 'loginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::resource('posts',PostController::class);
-// Route::get('posts/nuevaPrueba',[PostController::class,'nuevaPrueba'])->name('nuevaPrueba');
-// Route::get('posts/editarPrueba',[PostController::class,'editarPrueba'])->name('editarPrueba');
-
-
 
 
 

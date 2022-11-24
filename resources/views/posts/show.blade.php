@@ -8,7 +8,8 @@
     <h2>Creado:{{ $post->created_at}} </h2>
     <table>
         <tr>
-            <td><a class="btn btn-primary" href="{{ route('posts.show', $post) }}">Editar</a></td>
+            @if(auth()->check())
+            <td><a class="btn btn-warning" href="{{ route('posts.edit', $post) }}">Editar</a></td>
 
             <td>
                 <form action="{{ route('posts.destroy', $post) }}" method="POST">
@@ -17,6 +18,7 @@
                         <button class="btn btn-danger">Borrar</button>
                     </form>
             </td>
+            @endif
         </tr>
     </table>
 @endsection
