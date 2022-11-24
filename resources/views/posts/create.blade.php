@@ -33,15 +33,7 @@
 
         <br>
 
-        <div class="form-group">
-            <label for="user">ID del usuario:</label>
-            <input type="number" class="form-control" name="user" id="user">
-        </div>
-
-
-        {{-- Esto son pruebas que estaba haciendo pero no me ha funcionado --}}
-
-        {{-- <div class="form-group">
+         <div class="form-group">
             <label for="user">Usuario:</label>
             <select class="form-control" name="user" id="user">
                 @foreach ($users as $user)
@@ -50,7 +42,7 @@
                     </option>
                 @endforeach
             </select>
-        </div> --}}
+        </div>
 
 
         <br>
